@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+		https://www.springframework.org/schema/beans/spring-beans.xsd">
+		<bean id="DepInDetail" class="com.practice.spring.DependencyInjectionInDetail">
+		<property name="name" value="Muthukumar" ></property>
+		<property name="url">
+		<value>
+		databaseUrl=www.google.com
+		alterNateData=www.chrome.com
+		</value>
+		</property>
+		<property name="websitesName">
+		<props>
+		<prop key="google">www.google.com</prop>
+		<prop key="chrome">www.chrome.com</prop>
+		</props>
+		</property>
+		<property name="ourList">
+		<list>
+		<value>value1</value>
+		<value>value2</value>
+		</list>
+		</property>
+		<property name="ourMap">
+		<map>
+		<entry key="muthu" value="kumar"></entry>
+		</map>
+		</property>
+		<property name="ourSet">
+		<set>
+		<value>1</value>
+		<value>1</value>
+		</set>
+		</property>
+		</bean>
+		
+		<bean id="list" class="java.util.ArrayList">
+		</bean>
+</beans>

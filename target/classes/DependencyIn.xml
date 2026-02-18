@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+		https://www.springframework.org/schema/beans/spring-beans.xsd">
+		<import resource="beanContainer.xml"/>
+
+	<bean id="dependConst" class="com.practice.spring.DependencyInjection">
+	  <constructor-arg type="java.lang.String" value="Muthu"></constructor-arg>
+	  <constructor-arg type="int" value="24"></constructor-arg>
+	</bean>
+	<bean id="dependConst1" class="com.practice.spring.DependencyInjection">
+	  <constructor-arg name="name" value="Muthu"></constructor-arg>
+	  <constructor-arg name="age" value="24"></constructor-arg>
+	</bean>
+	<bean id="dependConst2" class="com.practice.spring.DependencyInjection">
+	  <constructor-arg index="0" value="Muthu"></constructor-arg>
+	  <constructor-arg index="1" value="24"></constructor-arg>
+	</bean>
+	<bean id="dependConst3" class="com.practice.spring.DependencyInjection">
+	<constructor-arg name="name" value="Muthu"></constructor-arg>
+	  <constructor-arg name="age" value="24"></constructor-arg>
+	  <property name="favFood" value="biriyani"></property>
+	</bean>
+	
+	<bean id="dependConst4" class="com.practice.spring.DependencyInjection">
+	<constructor-arg name="name" value="Muthu"></constructor-arg>
+	  <constructor-arg name="age" value="24"></constructor-arg>
+	  <property name="beanOverview" ref="overviewBean"></property>
+	</bean>
+	
+	<bean id="overviewBean" class="com.practice.spring.BeanOverview">
+	<property name = "name" value = "Muthumass"></property>
+	</bean>
+	
+	<bean id="dependConst5" class="com.practice.spring.DependencyInjection">
+	<constructor-arg name="name" value="Muthu"></constructor-arg>
+	  <constructor-arg name="age" value="24"></constructor-arg>
+	  <property name="beanOverview" ref="petStore3">
+	  
+	  </property>
+	</bean>
+	<bean id="overviewBean1" class="com.practice.spring.BeanOverview">
+	</bean>
+	
+	
+</beans>

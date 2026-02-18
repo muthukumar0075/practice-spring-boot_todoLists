@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+		https://www.springframework.org/schema/beans/spring-beans.xsd" default-lazy-init="true">
+		<bean id="lasyBean" depends-on="lasyBeans" class="com.practice.spring.DependOnAndLasyBean">
+		<property name="MyName" value="MuthuMass">
+		</property>
+		</bean>
+		
+		<bean id="lasyBeans" class="com.practice.spring.DependOnAndLasyBean">
+		</bean>
+		
+		<bean id="lasy" class="com.practice.spring.DependOnAndLasyBean" lazy-init ="true">
+		</bean>
+		
+</beans>
