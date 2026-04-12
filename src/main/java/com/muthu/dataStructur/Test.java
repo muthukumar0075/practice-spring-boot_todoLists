@@ -147,6 +147,8 @@ public class Test {
 		System.out.println();
 		treeTra.postOrderTraversal(tree.getNode());
 		System.out.println();
+		DepthFirstInLoop<Integer> dfsInLoop = new DepthFirstInLoop<>();
+		dfsInLoop.helperForLoop(tree.getNode());
 		
 		
 		
