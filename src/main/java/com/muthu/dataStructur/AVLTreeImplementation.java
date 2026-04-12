@@ -1,5 +1,11 @@
 package com.muthu.dataStructur;
 
+import java.util.ArrayList;
+import java.util.Deque;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+
 public class AVLTreeImplementation<T extends Integer> {
 	private Node root;
 	private class Node{
@@ -22,6 +28,12 @@ public class AVLTreeImplementation<T extends Integer> {
 		System.out.print("-->"+node.value);
 		System.out.println();
 		display(node.left,level + 1);	
+	}
+	
+	public void constructTree(int[] arr) {
+		for(int i = 0;i < arr.length;i++) {
+			insertValue(arr[i]);
+		}
 	}
 	
 	public void insertValue(int value) {
@@ -140,6 +152,26 @@ public class AVLTreeImplementation<T extends Integer> {
 		}
 		return node.height;
 	}
+	public void breadthFirstSearch() {
+		breadthFirstSearch(root,new LinkedList<>());
+	}
+	
+	private void breadthFirstSearch(Node node,Deque<Node> deque) {
+		if(node != root && deque.isEmpty()) {
+			return;
+		}
+		System.out.println(node.value);
+		if(root != node) {
+			deque.poll();
+		}
+		if(node.left != null) {
+			deque.add(node.left);
+		}
+		if(node.right != null) {
+			deque.add(node.right);
+		}
+		breadthFirstSearch(deque.peek(), deque);
+	}
 	public void removeNode(int value) {
 		if(root.value == value) {
 			root = null;
@@ -163,6 +195,35 @@ public class AVLTreeImplementation<T extends Integer> {
 				temp = temp.left;
 			}
 		}
+	}
+	
+	public Node averageOfLevels(Node root, int key) {
+        if(root == null){
+            return null;
+        }
+        Queue<Node> queue = new LinkedList<Node>();
+        List<Double> resultSet = new ArrayList<Double>();
+        queue.add(root);
+        while(!queue.isEmpty()){
+            int size = queue.size();
+            for(int i = 0; i < size;i++){
+            	Node node = queue.poll();
+                if(node.left != null){
+                    queue.add(node.left);
+                }
+                if(node.right != null){
+                    queue.add(node.right);
+                }
+                if(node.value == key) {
+                	return queue.peek();
+                }
+            }
+        }
+        return null;
+    }
+	
+	public Node getRoot() {
+		return root;
 	}
 
 }

@@ -1,5 +1,6 @@
 package com.muthu.dataStructur;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -8,6 +9,7 @@ import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
+import java.util.Scanner;
 
 import com.muthu.dataStructur.MuthuListedList.MuthuNode;
 
@@ -136,12 +138,16 @@ public class Test {
 //			bTree.insertValues(i);
 //		}
 //		bTree.display();
-		SegmentTreeImplementation tree = new SegmentTreeImplementation();
-		int[] arr = {1,2,3,4};
-		tree.segmentTree(arr); 
-		tree.display();
-		tree.updateValueOfTree(5,3);
-		tree.display();
+		Binarytree<Integer> tree = new Binarytree<>();
+		tree.populate(new Scanner(System.in));
+		BinaryTreeTraversal<Integer> treeTra = new BinaryTreeTraversal<>();
+		treeTra.preOrderTraversal(tree.getNode());
+		System.out.println();
+		treeTra.inorderTraversal(tree.getNode());
+		System.out.println();
+		treeTra.postOrderTraversal(tree.getNode());
+		System.out.println();
+		
 		
 		
 		

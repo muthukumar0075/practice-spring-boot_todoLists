@@ -22,6 +22,22 @@ public class SegmentTreeImplementation{
 	public void updateValueOfTree(int value,int index) {
 		updateTheTree(value,index,root);
 	}
+	public int findRange(int start,int end) {
+		return findRange(start,end,root);
+	}
+	private int findRange(int start,int end,Node node) {
+		if(node.startRange > end || node.endRange < start) {
+			return 0;
+		}
+		if(node.startRange >= start && node.endRange <= end) {
+			return node.data;
+		}
+		int left = findRange(start, end,node.left);
+		int right = findRange(start, end,node.right);
+		return left + right;
+		
+		
+	}
 	
 	private Node updateTheTree(int data,int index,Node node) {
 		if(node.startRange == index && node.endRange == index) {

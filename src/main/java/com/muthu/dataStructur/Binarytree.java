@@ -4,11 +4,15 @@ import java.io.InputStream;
 import java.util.Scanner;
 
 public class Binarytree<T> {
-	private Node root;
-	private class Node{
+	private  Node root;
+	protected class Node{
 		Object value;
 		Node right;
 		Node left;
+	}
+	
+	public Node getNode() {
+		return root;
 	}
 	
 	public void populate(Scanner scan) {
@@ -20,20 +24,20 @@ public class Binarytree<T> {
 	}
 	
 	private void populateValue(Scanner scan,Node node) {
-		System.out.println("Need left");
-		boolean flag = scan.nextBoolean();
-		if(flag) {
+		System.out.println("Need left y/n");
+		String flag = scan.next();
+		if(flag.equals("y")) {
 			node.left = new Node();
-			System.out.println("value?");
+			System.out.println("root " + node.value +"left value?");
 			int value = scan.nextInt();
 			node.left.value = value;
 			populateValue(scan, node.left);
 		}
-		System.out.println("Need right");
-		boolean flagRight = scan.nextBoolean();
-		if(flagRight) {
+		System.out.println("Need right  y/n");
+		String flagRight = scan.next();
+		if(flagRight.equals("y")) {
 			node.right = new Node();
-			System.out.println("value?");
+			System.out.println("root " + node.value +"right value?");
 			int value = scan.nextInt();
 			node.right.value = value;
 			populateValue(scan, node.right);
