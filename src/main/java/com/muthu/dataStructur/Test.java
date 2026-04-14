@@ -138,17 +138,30 @@ public class Test {
 //			bTree.insertValues(i);
 //		}
 //		bTree.display();
-		Binarytree<Integer> tree = new Binarytree<>();
-		tree.populate(new Scanner(System.in));
-		BinaryTreeTraversal<Integer> treeTra = new BinaryTreeTraversal<>();
-		treeTra.preOrderTraversal(tree.getNode());
-		System.out.println();
-		treeTra.inorderTraversal(tree.getNode());
-		System.out.println();
-		treeTra.postOrderTraversal(tree.getNode());
-		System.out.println();
-		DepthFirstInLoop<Integer> dfsInLoop = new DepthFirstInLoop<>();
-		dfsInLoop.helperForLoop(tree.getNode());
+//		Binarytree<Integer> tree = new Binarytree<>();
+//		tree.populate(new Scanner(System.in));
+//		BinaryTreeTraversal<Integer> treeTra = new BinaryTreeTraversal<>();
+//		treeTra.preOrderTraversal(tree.getNode());
+//		System.out.println();
+//		treeTra.inorderTraversal(tree.getNode());
+//		System.out.println();
+//		treeTra.postOrderTraversal(tree.getNode());
+//		System.out.println();
+//		DepthFirstInLoop<Integer> dfsInLoop = new DepthFirstInLoop<>();
+//		dfsInLoop.helperForLoop(tree.getNode());
+		HeapDataStructureWithArrayList heap = new HeapDataStructureWithArrayList();
+		heap.insert(1, true);
+		heap.insert(2, true);
+		heap.insert(3, true);
+		heap.insert(4, true);
+		heap.insert(5, true);
+		heap.insert(6, true);
+		heap.output();
+		heap.remove(true);
+		heap.output();
+		heap.remove(true);
+		heap.output();
+		
 		
 		
 		
