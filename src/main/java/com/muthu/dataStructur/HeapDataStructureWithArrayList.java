@@ -21,47 +21,100 @@ public class HeapDataStructureWithArrayList {
 		}
 	}
 	
-	public void remove(boolean maxHeap) {
+	public int remove(boolean maxHeap) {
+		int firstElement = arr.get(0);
 		int index = 0;
-		int lastValue = arr.removeLast();
-		arr.set(0, lastValue);
-		while(index + 1 < arr.size() && !locationValidator(index + 1, maxHeap)) {
-			int leftValue = arr.get(index + 1);
-			int currentValue = arr.get(index);
+		if(arr.size() == 1) {
+			return arr.removeLast();
+		}
+		arr.set(index, arr.removeLast());
+		while(downwardsValidator(maxHeap,arr.get(index))) {
 			if(maxHeap) {
-				if(leftValue > currentValue) {
-					arr.set(index + 1, currentValue);
-					arr.set(index, leftValue);
-					index = index + 1;
+				int leftValueIndex = index * 2 + 1;
+				int rightValueIndex = index * 2 + 2;
+				if(leftValueIndex < arr.size() && rightValueIndex < arr.size()) {
+					if(arr.get(rightValueIndex) < arr.get(leftValueIndex)) {
+						int leftValue = arr.get(leftValueIndex);
+						arr.set(leftValueIndex, arr.get(index));
+						arr.set(index, leftValue);
+						index = leftValueIndex;
+					}
+					else if(arr.get(leftValueIndex) < arr.get(rightValueIndex)) {
+						int rightValue = arr.get(rightValueIndex);
+						arr.set(rightValueIndex, arr.get(index));
+						arr.set(index, rightValue);
+						index = rightValueIndex;
+					}
+				}
+				else if(leftValueIndex < arr.size()) {
+					if(arr.get(index) < arr.get(leftValueIndex)) {
+						int leftValue = arr.get(leftValueIndex);
+						arr.set(leftValueIndex, arr.get(index));
+						arr.set(index, leftValue);
+						index = leftValueIndex;
+					}
 				}
 			}
 			else {
-				if(leftValue < currentValue) {
-					arr.set(index + 1, currentValue);
-					arr.set(index, leftValue);
-					index = index + 1;
+				int leftValueIndex = index * 2 + 1;
+				int rightValueIndex = index * 2 + 2;
+				if(leftValueIndex < arr.size() && rightValueIndex < arr.size()) {
+					if(arr.get(rightValueIndex) > arr.get(leftValueIndex)) {
+						int leftValue = arr.get(leftValueIndex);
+						arr.set(leftValueIndex, arr.get(index));
+						arr.set(index, leftValue);
+						index = leftValueIndex;
+					}
+					else if(arr.get(leftValueIndex) > arr.get(rightValueIndex)) {
+						int rightValue = arr.get(rightValueIndex);
+						arr.set(rightValueIndex, arr.get(index));
+						arr.set(index, rightValue);
+						index = rightValueIndex;
+					}
+				}
+				else if(leftValueIndex < arr.size()) {
+					if(arr.get(index) > arr.get(leftValueIndex)) {
+						int leftValue = arr.get(leftValueIndex);
+						arr.set(leftValueIndex, arr.get(index));
+						arr.set(index, leftValue);
+						index = leftValueIndex;
+					}
 				}
 			}
 		}
-		while(index + 2 < arr.size() && !locationValidator(index + 2, maxHeap)) {
-			int rightValue = arr.get(index + 2);
-			int currentValue = arr.get(index);
-			if(maxHeap) {
-				if(rightValue > currentValue) {
-					arr.set(index + 2, currentValue);
-					arr.set(index, rightValue);
-					index = index + 2;
+		return firstElement;
+	}
+	
+	public boolean downwardsValidator(boolean maxHeap,int value) {
+		boolean flag = false;
+		if(maxHeap) {
+			int leftValueIndex = arr.indexOf(value) * 2 + 1;
+			int rightValueIndex = arr.indexOf(value) * 2 + 2;
+			if(leftValueIndex < arr.size() && rightValueIndex < arr.size()) {
+				if(value < arr.get(leftValueIndex) || value < arr.get(rightValueIndex)) {
+					return true;
 				}
 			}
-			else {
-				if(rightValue < currentValue) {
-					arr.set(index + 2, currentValue);
-					arr.set(index, rightValue);
-					index = index + 2;
+			else if(leftValueIndex < arr.size()) {
+				if(value < arr.get(leftValueIndex)) {
+					return true;
+				}
+			}
+		}else {
+			int leftValueIndex = arr.indexOf(value) * 2 + 1;
+			int rightValueIndex = arr.indexOf(value) * 2 + 2;
+			if(leftValueIndex < arr.size() && rightValueIndex < arr.size()) {
+				if(value > arr.get(leftValueIndex) || value > arr.get(rightValueIndex)) {
+					return true;
+				}
+			}
+			else if(leftValueIndex < arr.size()) {
+				if(value > arr.get(leftValueIndex)) {
+					return true;
 				}
 			}
 		}
-		
+		return flag;
 	}
 	
 	public void output() {
@@ -83,5 +136,75 @@ public class HeapDataStructureWithArrayList {
 			}
 		}
 		return flag;
+	}
+	
+	public ArrayList<Integer> heapSort(boolean maxHeap){
+		ArrayList<Integer> sortedArr = new ArrayList<>();
+		while(!arr.isEmpty()) {
+			sortedArr.add(remove(maxHeap));
+		}
+		return sortedArr;
+	}
+	
+	public List<Integer> sortedArrayUsingUnstoredArr(List<Integer> unsortedArr,boolean max){
+		this.arr = unsortedArr;
+		for(int i = arr.size()/2; i >= 0; i--) {
+			int index = i;
+			while(downwardsValidator(max, arr.get(index))) {
+				if(max) {
+					int leftValueIndex = index * 2 + 1;
+					int rightValueIndex = index * 2 + 2;
+					if(leftValueIndex < arr.size() && rightValueIndex < arr.size()) {
+						if(arr.get(rightValueIndex) < arr.get(leftValueIndex)) {
+							int leftValue = arr.get(leftValueIndex);
+							arr.set(leftValueIndex, arr.get(index));
+							arr.set(index, leftValue);
+							index = leftValueIndex;
+						}
+						else if(arr.get(leftValueIndex) < arr.get(rightValueIndex)) {
+							int rightValue = arr.get(rightValueIndex);
+							arr.set(rightValueIndex, arr.get(index));
+							arr.set(index, rightValue);
+							index = rightValueIndex;
+						}
+					}
+					else if(leftValueIndex < arr.size()) {
+						if(arr.get(index) < arr.get(leftValueIndex)) {
+							int leftValue = arr.get(leftValueIndex);
+							arr.set(leftValueIndex, arr.get(index));
+							arr.set(index, leftValue);
+							index = leftValueIndex;
+						}
+					}
+				}
+				else {
+					int leftValueIndex = index * 2 + 1;
+					int rightValueIndex = index * 2 + 2;
+					if(leftValueIndex < arr.size() && rightValueIndex < arr.size()) {
+						if(arr.get(rightValueIndex) > arr.get(leftValueIndex)) {
+							int leftValue = arr.get(leftValueIndex);
+							arr.set(leftValueIndex, arr.get(index));
+							arr.set(index, leftValue);
+							index = leftValueIndex;
+						}
+						else if(arr.get(leftValueIndex) > arr.get(rightValueIndex)) {
+							int rightValue = arr.get(rightValueIndex);
+							arr.set(rightValueIndex, arr.get(index));
+							arr.set(index, rightValue);
+							index = rightValueIndex;
+						}
+					}
+					else if(leftValueIndex < arr.size()) {
+						if(arr.get(index) > arr.get(leftValueIndex)) {
+							int leftValue = arr.get(leftValueIndex);
+							arr.set(leftValueIndex, arr.get(index));
+							arr.set(index, leftValue);
+							index = leftValueIndex;
+						}
+					}
+				}
+			}
+		}
+		return this.arr;
 	}
 }

@@ -150,17 +150,9 @@ public class Test {
 //		DepthFirstInLoop<Integer> dfsInLoop = new DepthFirstInLoop<>();
 //		dfsInLoop.helperForLoop(tree.getNode());
 		HeapDataStructureWithArrayList heap = new HeapDataStructureWithArrayList();
-		heap.insert(1, true);
-		heap.insert(2, true);
-		heap.insert(3, true);
-		heap.insert(4, true);
-		heap.insert(5, true);
-		heap.insert(6, true);
-		heap.output();
-		heap.remove(true);
-		heap.output();
-		heap.remove(true);
-		heap.output();
+		ArrayList<Integer> arr = new ArrayList<>(List.of(4, 1, 3, 2, 16, 9, 10, 14, 8, 7));
+		System.out.println(heap.sortedArrayUsingUnstoredArr(arr, false));
+		
 		
 		
 		
