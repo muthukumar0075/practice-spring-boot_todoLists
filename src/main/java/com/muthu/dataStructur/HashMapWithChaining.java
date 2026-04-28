@@ -90,15 +90,16 @@ public class HashMapWithChaining<K,V> {
 	}
 	
 	private void restructure() {
-		List<LinkedList<Entities<K, V>>> newContainer = new ArrayList<>();
-		for(int i = 0; i < list.size() * 2;i++) {
-			newContainer.add(new LinkedList<>());
+		List<LinkedList<Entities<K, V>>> newContainer = list;
+		list = new ArrayList<>();
+		elementsAdded = 0;
+		for(int i = 0; i < newContainer.size() * 2;i++) {
+			list.add(new LinkedList<>());
 		}
-		for(LinkedList<Entities<K,V>> entityLinked : list) {
+		for(LinkedList<Entities<K,V>> entityLinked : newContainer) {
 			for(Entities<K, V> entity:entityLinked) {
 				put(entity.key, entity.value);
 			}
 		}
-		list = newContainer;
 	}
 }
