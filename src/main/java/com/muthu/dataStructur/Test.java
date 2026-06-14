@@ -152,17 +152,21 @@ public class Test {
 //		HeapDataStructureWithArrayList heap = new HeapDataStructureWithArrayList();
 //		ArrayList<Integer> arr = new ArrayList<>(List.of(4, 1, 3, 2, 16, 9, 10, 14, 8, 7));
 //		System.out.println(heap.sortedArrayUsingUnstoredArr(arr, false));
-		BinaryTreeTestData bst = new BinaryTreeTestData();
-		for(int i = 0;i < 5;i++) {
-			bst.createTestDataForBST(i);
-		}
-		
-		List<Integer> lst = bst.getDataInList();
-		DoublyLinkedListForBST doublyLinked = new DoublyLinkedListForBST();
-		for(Integer i : lst) {
-			doublyLinked.addValue(i);
-		}
-		doublyLinked.display();
+//		BinaryTreeTestData bst = new BinaryTreeTestData();
+//		for(int i = 0;i < 5;i++) {
+//			bst.createTestDataForBST(i);
+//		}
+//		
+//		List<Integer> lst = bst.getDataInList();
+//		DoublyLinkedListForBST doublyLinked = new DoublyLinkedListForBST();
+//		for(Integer i : lst) {
+//			doublyLinked.addValue(i);
+//		}
+//		doublyLinked.display();
+//		KarprabinAlgor rab = new KarprabinAlgor();
+//		System.out.println(rab.searchForString("CDE","ABCDE"));
+		RadixSort sort = new RadixSort();
+		System.out.print(sort.sort(new ArrayList<>(List.of(4, 1, 3, 2, 16, 9, 10, 14, 8, 7))));
 		
 		
 		
