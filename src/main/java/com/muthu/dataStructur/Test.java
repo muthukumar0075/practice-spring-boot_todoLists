@@ -165,8 +165,11 @@ public class Test {
 //		doublyLinked.display();
 //		KarprabinAlgor rab = new KarprabinAlgor();
 //		System.out.println(rab.searchForString("CDE","ABCDE"));
-		RadixSort sort = new RadixSort();
-		System.out.print(sort.sort(new ArrayList<>(List.of(4, 1, 3, 2, 16, 9, 10, 14, 8, 7))));
+//		RadixSort sort = new RadixSort();
+//		System.out.print(sort.sort(new ArrayList<>(List.of(4, 1, 3, 2, 16, 9, 10, 14, 8, 7))));
+		HuffManGreedyAlgorithm huffman = new HuffManGreedyAlgorithm();
+		huffman.doEncode("i love you sashya so much, you made my life good and meaningful");
+		huffman.decodeTheValue("01001110000001010101010111101100110001110110110101100101110111101111011000111101111000100100010111001011111011001100011101111101110011010111011110111110000010010011101011111000001001110011111101000111001111011110101101000101000001110001001110000000");
 		
 		
 		
